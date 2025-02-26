@@ -11,39 +11,41 @@ export class TrabalhoView {
         this.prompt = PromptSync();
     }
 
-    public async exibirMenu() {
+    public async exibirMenuTrabalho() {
         console.log("----------- Seja bem vindo ao menu de Trabalhos ----------")
         console.log("1- Listar trabalhos")
         console.log("2- Procurar trabalho")
         console.log("3- Adicionar trabalho")
         console.log("4- Sair")
-        const pergunta = this.prompt("O que deseja fazer? (apenas núemeros!!!)")
+        const pergunta = this.prompt("O que deseja fazer? (apenas núemeros!!!): ")
 
         switch (pergunta) {
             case "1":
                 console.table(await this.trabalho.listarTrabalho());
-                return this.exibirMenu()
+                return this.exibirMenuTrabalho()
 
 
             case "2":
                 let digitarplaca_id = this.prompt("Digite a placa do veiculo que deseja ver o serviço: ")
                 console.table(await this.trabalho.procurarTrabalho(digitarplaca_id))
-                return this.exibirMenu()
+                return this.exibirMenuTrabalho()
 
             case "3":
                 let addid_servico = this.prompt("Digite o ID do novo serviço: ")
                 let addtrabalho_feito= this.prompt("Digite o trabalho feito: ")
                 let adddata = this.prompt("Digite a data: ")
-                let addplacavei = this.prompt("Digite a placa do veiculo:: ")
-                await this.trabalho.adicionarTrabalho(parseInt(addid_servico), addtrabalho_feito, new Date (adddata), addplacavei)
-                return this.exibirMenu()
+                let addplacavei = this.prompt("Digite a placa do veiculo: ")
+                await this.trabalho.adicionarTrabalho(parseInt(addid_servico), addtrabalho_feito, adddata, addplacavei)
+                console.log("Trabalho adicionado com sucesso!!!")
+                console.table(await this.trabalho.listarTrabalho())
+                return this.exibirMenuTrabalho()
 
             case "4":
                 console.log("Você saiu")
                 break
             default:
                 console.log("Insira uma opção valida")
-                return this.exibirMenu()
+                return this.exibirMenuTrabalho()
         }
     }
 }

@@ -21,4 +21,22 @@ export class PagamentosRepository{
         }
         return listaPagamentos
     }
+
+    async procurarPagamento(id_servico: number): Promise<Pagamentos[]>{
+        const query = "SELECT * FROM SERVICOS.PAGAMENTOS WHERE id_servico= $1";
+        const result = await this.pool.query(query,[id_servico])
+
+        const listaPagamentos: Pagamentos[] = []
+
+        for (const row of result.rows){
+            const pagamento= new Pagamentos(row.id_servico, row.data, row.metodo, row.valor)
+            listaPagamentos.push(pagamento)
+        }
+        return listaPagamentos;
+    }
+
+    async adicionarPagamento(id_servico: number, data: string, metodo: string, valor:string){
+        let query="INSERT INTO SERVICOS.PAGAMENTOS (id_servico, data, metodo, valor) VALUES ($1,$2, $3, $4)";
+        await this.pool.query(query,[id_servico, data, metodo, valor])
+    }  
 }

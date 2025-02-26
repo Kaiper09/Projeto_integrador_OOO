@@ -1,14 +1,17 @@
-import { TrabalhoView } from "./view/TrabalhoView";
+import { PagamentoView } from "./view/PagamentoView";
+async function menuTestePagamento(){
+  const pagamentosView = new PagamentoView()
+  await pagamentosView.exibirMenuPagamento()
+}
+menuTestePagamento()
+
+/*import { TrabalhoView } from "./view/TrabalhoView";
 async function menutestetrabalho(){
   const trabalhoView = new TrabalhoView()
-  await trabalhoView.exibirMenu()
+  await trabalhoView.exibirMenuTrabalho()
 }
-menutestetrabalho()
+menutestetrabalho()*/
   
-
-
-
-
 /*import { VeiculoView } from "./view/VeiculoView";
 
 async function menutesteveiculo(){

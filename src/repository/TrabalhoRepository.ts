@@ -25,7 +25,7 @@ export class TrabalhoRepository {
     }
 
     async procurarTrabalho(placa_veiculo_id: string): Promise<Trabalho[]> {
-        const query = "SELECT * FROM SERVICOS.CLIENTES WHERE placa_veiculo= $1";
+        const query = "SELECT * FROM SERVICOS.TRABALHOS WHERE placa_veiculo_id= $1";
         const result = await this.pool.query(query, [placa_veiculo_id])
 
         const listaTrabalho: Trabalho[] = []
@@ -38,7 +38,7 @@ export class TrabalhoRepository {
 
     }
 
-    async adicionarTrabalho(id_servico: number, trabalho_feito: string, data: Date, placa_veiculo_id: string ){
+    async adicionarTrabalho(id_servico: number, trabalho_feito: string, data: string, placa_veiculo_id: string ){
         let query= "INSERT INTO SERVICOS.TRABALHOS (id_servico, trabalho_feito, data, placa_veiculo_id) VALUES ($1, $2, $3, $4)"
         await this.pool.query(query,[id_servico, trabalho_feito, data, placa_veiculo_id ])
     }

@@ -15,13 +15,13 @@ export class TrabalhoService{
         return await this.repo.listarTrabalho()
     }
 
-    async adicionarTrabalho(id_servico: number, trabalho_feito: string, data: Date, placa_veiculo_id:string) {
+    async adicionarTrabalho(id_servico: number, trabalho_feito: string, data: string, placa_veiculo_id:string) {
         await this.repo.adicionarTrabalho(id_servico, trabalho_feito, data, placa_veiculo_id)
         
     }
-    async procurarTrabalho(digitarplaca_id: string):Promise<Trabalho[]>{
+    async procurarTrabalho(placa_veiculo_id: string):Promise<Trabalho[]>{
         let listaTrabalho : Trabalho[] = []
-        listaTrabalho = await this.repo.procurarTrabalho(digitarplaca_id)
+        listaTrabalho = await this.repo.procurarTrabalho(placa_veiculo_id)
 
         
         if(listaTrabalho.length == 0){
