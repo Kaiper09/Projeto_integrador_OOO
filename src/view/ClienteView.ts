@@ -15,7 +15,8 @@ export class ClienteView {
         console.log("1- Listar clientes")
         console.log("2- Procurar cliente")
         console.log("3- Adicionar cliente")
-        console.log("4- Sair")
+        console.log("4- Atualizar dados de cliente")
+        console.log("5- Sair")
         const pergunta = this.prompt("O que deseja fazer? (apenas núemeros!!!)")
 
         switch (pergunta) {
@@ -38,7 +39,19 @@ export class ClienteView {
                 await this.cliente.adicionarCliente(addcpf, addnome, new Date(addnascimento), BigInt(addnumero), addcidade)
                 return this.exibirMenu()
 
+
             case "4":
+                let pergunta = this.prompt("Digite o CPF do cliente que deseja atualizar as informações")
+                let cpfnew = this.prompt("Digite o seu CPF: ")
+                let nomenew = this.prompt("Digite o seu nome: ")
+                let nascimentonew = this.prompt("Digite o seu nascimento: ")
+                let numeronew = parseInt(this.prompt("Digite o seu numero: "))
+                let cidadenew = this.prompt("Digite o sua cidade: ")
+                await this.cliente.atualizarCliente()
+
+                return this.exibirMenu()
+
+            case "5":
                 console.log("Você saiu")
                 break
             default:

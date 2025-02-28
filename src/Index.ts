@@ -1,9 +1,9 @@
-import { PagamentoView } from "./view/PagamentoView";
+/*import { PagamentoView } from "./view/PagamentoView";
 async function menuTestePagamento(){
   const pagamentosView = new PagamentoView()
   await pagamentosView.exibirMenuPagamento()
 }
-menuTestePagamento()
+menuTestePagamento()*/
 
 /*import { TrabalhoView } from "./view/TrabalhoView";
 async function menutestetrabalho(){
@@ -40,15 +40,15 @@ async function teste(){
   
 teste()*/
 
-/*import { ClienteService } from "./service/ClienteService";
+import { ClienteService } from "./service/ClienteService";
 
 const adiocionar1= new ClienteService()
 
 async function adcionarteste() {
-  adiocionar1.adicionarCliente("763.143.413-65", "Heitor", "2022-01-13", 99996531, "Igrejinha")
+  adiocionar1.procurarUmCliente("763.143.413-65")
 }
 
-adcionarteste()*/
+adcionarteste()
 
 /*import { ClienteService } from "./service/ClienteService";
 

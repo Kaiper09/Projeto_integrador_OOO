@@ -34,4 +34,29 @@ export class ClienteService{
     }
         await this.repo.adicionarCliente(cpf,nome,nascimento,numero,ciade)
     }
+
+    async atualizarCliente(cpf:string,nome:string,nascimento:Date,numero:bigint,ciade:string){
+        
+
+        let listaClientes : Cliente[] = []
+        let clienteAtual = await this.repo.procurarCliente(cpf)
+        if(this.procurarClientes.length <=0){
+            throw new Error("CPF não encopntrado")
+        }
+        return listaClientes
+    }
+
+    async procurarUmCliente(cpf: string):Promise<Cliente>{
+        let cliente : Cliente
+        cliente = await this.repo.procurarUmCliente(cpf)
+        
+
+        if(!cliente){
+            throw new Error("Cliente não encontrado!!!")
+        }
+        return cliente;
+    }
+    
+
+    
 }

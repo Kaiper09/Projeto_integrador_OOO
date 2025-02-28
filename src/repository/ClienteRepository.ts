@@ -43,5 +43,22 @@ export class ClienteRepository{
         let query = "INSERT INTO SERVICOS.CLIENTES (cpf, nome, nascimento, numero, cidade) VALUES ($1, $2, $3, $4, $5)"
         await this.pool.query(query,[cpf, nome, nascimento, numero, cidade])
     }
-}
 
+    async atualizarCliente(Cliente: Cliente){
+        let query= "UPDATE INTO SERVICOS.CLIENTES SET cpf=$1, nome=$2, nascimento=$3, numero=$4, cidade=$5 WHERE cpf=$1";
+        await this.pool.query(query,[Cliente])
+    }
+
+    async procurarUmCliente(cpf: string):Promise<Cliente[]>{
+        const query = "UPDATE * FROM SERVICOS.CLIENTES WHERE cpf= $1";
+        const result = await this.pool.query(query, [cpf]);
+
+        const listaClientes: Cliente[] = []
+
+        for(const row of result.rows){
+            const cliente= new Cliente(row.cpf, row.nome, row.nascimento, row.numero, row.cidade)
+            listaClientes.push(cliente)
+        }
+        return listaClientes;
+    }
+}
