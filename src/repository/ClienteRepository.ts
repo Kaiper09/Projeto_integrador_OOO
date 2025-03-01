@@ -45,7 +45,7 @@ export class ClienteRepository{
     }
 
     async atualizarCliente(Cliente: Cliente){
-        let query= "UPDATE INTO SERVICOS.CLIENTES SET cpf=$1, nome=$2, nascimento=$3, numero=$4, cidade=$5 WHERE cpf=$1";
+        let query= "UPDATE servicos.clientes SET nome=?, nascimento=?, numero=?, cidade=? WHERE cpf=?"
         await this.pool.query(query,[Cliente])
     }
 
