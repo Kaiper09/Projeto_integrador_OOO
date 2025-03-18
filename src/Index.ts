@@ -21,14 +21,14 @@ async function menutesteveiculo(){
 
 menutesteveiculo()*/
 
-/*import { ClienteView } from "./view/ClienteView";
+import { ClienteView } from "./view/ClienteView";
 
 async function menuteste() {
   const clienteView = new ClienteView(); 
   await clienteView.exibirMenu(); 
 }
 
-menuteste()*/
+menuteste()
 
 /*import { ClienteService } from "./service/ClienteService";
 
@@ -40,7 +40,7 @@ async function teste(){
   
 teste()*/
 
-import { ClienteService } from "./service/ClienteService";
+/*import { ClienteService } from "./service/ClienteService";
 
 const adiocionar1= new ClienteService()
 
@@ -48,7 +48,7 @@ async function adcionarteste() {
   adiocionar1.procurarUmCliente("763.143.413-65")
 }
 
-adcionarteste()
+adcionarteste()*/
 
 /*import { ClienteService } from "./service/ClienteService";
 

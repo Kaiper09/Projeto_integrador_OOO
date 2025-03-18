@@ -35,28 +35,27 @@ export class ClienteService{
         await this.repo.adicionarCliente(cpf,nome,nascimento,numero,ciade)
     }
 
-    async atualizarCliente(cpf:string,nome:string,nascimento:Date,numero:bigint,ciade:string){
-        
-
-        let listaClientes : Cliente[] = []
-        let clienteAtual = await this.repo.procurarCliente(cpf)
-        if(this.procurarClientes.length <=0){
-            throw new Error("CPF não encopntrado")
-        }
-        return listaClientes
+    async verificarCpf(cpf: string):Promise<boolean>{
+        let lista : Cliente []
+        lista = await this.repo.verificarCpf(cpf)
+        return lista.length > 0
     }
 
-    async procurarUmCliente(cpf: string):Promise<Cliente>{
-        let cliente : Cliente
-        cliente = await this.repo.procurarUmCliente(cpf)
-        
-
-        if(!cliente){
-            throw new Error("Cliente não encontrado!!!")
+    async atualizarCliente(nome, nascimento, numero, cidade, cpf) {
+        if(nome = null){
+            console.log("Nome inválido")
+            return
         }
-        return cliente;
-    }
-    
 
-    
+        if(numero.isNaN){
+            console.log("Número inválido")
+        return
+        }
+
+        if(cidade.isNaN){
+            console.log("Cidade inválido")
+            return
+        }
+        
+    }
 }
