@@ -2,60 +2,82 @@ import { Cliente } from "../entity/cliente";
 import { ClienteRepository } from "../repository/ClienteRepository"
 
 //arquiterura/avaliação:
-export class ClienteService{
+export class ClienteService {
 
 
-    private repo : ClienteRepository
+    private repo: ClienteRepository
 
-    constructor(){
+    constructor() {
         this.repo = new ClienteRepository();
     }
-   
-    async listarClientes():Promise<Cliente[]>{
+
+    async listarClientes(): Promise<Cliente[]> {
         //console.table(this.repo.listarCliente())
         return await this.repo.listarCliente()
     }
 
-    async procurarClientes(cpf: string):Promise<Cliente[]>{
-        let listaClientes : Cliente[] = []
+    async procurarClientes(cpf: string): Promise<Cliente[]> {
+        let listaClientes: Cliente[] = []
         listaClientes = await this.repo.procurarCliente(cpf)
-        
 
-        if(listaClientes.length == 0){
+
+        if (listaClientes.length == 0) {
             throw new Error("Cliente não encontrado!!!")
         }
         return listaClientes;
     }
 
-    async adicionarCliente(cpf:string,nome:string,nascimento:Date,numero:bigint,ciade:string){
+    async adicionarCliente(cpf: string, nome: string, nascimento: Date, numero: bigint, ciade: string) {
         const telefonevalido = numero.toString().length >= 10;
-    if (!telefonevalido) {
-        throw new Error("O número de celular deve ter pelo menos 10 dígitos!!!");
-    }
-        await this.repo.adicionarCliente(cpf,nome,nascimento,numero,ciade)
+        if (!telefonevalido) {
+            throw new Error("O número de celular deve ter pelo menos 10 dígitos!!!");
+        }
+        await this.repo.adicionarCliente(cpf, nome, nascimento, numero, ciade)
     }
 
-    async verificarCpf(cpf: string):Promise<boolean>{
-        let lista : Cliente []
+    async verificarCpf(cpf: string): Promise<boolean> {
+        let lista: Cliente[]
         lista = await this.repo.verificarCpf(cpf)
         return lista.length > 0
     }
 
-    async atualizarCliente(nome, nascimento, numero, cidade, cpf) {
-        if(nome = null){
+    async atualizarCliente(cpf:string ,nome:string, nascimento: Date, numero: bigint, cidade:string,) {
+        if (!nome){
             console.log("Nome inválido")
             return
         }
 
-        if(numero.isNaN){
+        if (isNaN(Number(numero))) {
             console.log("Número inválido")
-        return
-        }
-
-        if(cidade.isNaN){
-            console.log("Cidade inválido")
             return
         }
-        
+
+        if (nascimento) {
+            const dataNascimento = new Date(nascimento);
+            const hoje = new Date();
+            let idade = hoje.getFullYear() - dataNascimento.getFullYear();
+            if (idade < 18) {
+                console.log("O cliente deve ser maior de idade.");
+                return;
+            }
+
+        }
+       
+        await this.repo.atualizarCliente(cpf, nome ,nascimento, numero, cidade)
+        console.log("Cliente atualizadp com sucesso!!!")
+    }
+
+    async deletarCliente(cpf: string){
+        const clientes = await this.listarClientes();
+
+        const clienteExistente = clientes.find(cliente => cliente.getCpf() === cpf);
+
+        if (!clienteExistente) {
+            console.log("CPF não encontrado");
+            return; 
+        }
+    
+        await this.repo.deleterCliente(cpf);
+        console.log("Cliente deletado com sucesso");
     }
 }

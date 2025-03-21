@@ -15,4 +15,8 @@ export class Cliente {
         this.numero = numero;
         this.cidade = cidade;
     }
+
+    public getCpf(): string {
+        return this.cpf;
+    }
 }

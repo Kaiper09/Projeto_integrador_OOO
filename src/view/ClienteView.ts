@@ -16,7 +16,8 @@ export class ClienteView {
         console.log("2- Procurar cliente")
         console.log("3- Adicionar cliente")
         console.log("4- Atualizar dados de cliente")
-        console.log("5- Sair")
+        console.log("5- Deletar Cliente")
+        console.log("6- Sair do Menu")
         const pergunta = this.prompt("O que deseja fazer? (apenas núemeros!!!): ")
 
         switch (pergunta) {
@@ -50,6 +51,11 @@ export class ClienteView {
                 return this.exibirMenu();
 
             case "5":
+                let deletarCpf= this.prompt("Digite o CPF do cliente que deseja deletar: ")
+                await this.cliente.deletarCliente(deletarCpf)
+                return this.exibirMenu()
+
+            case "6":
                 console.log("Você saiu")
                 break
             default:

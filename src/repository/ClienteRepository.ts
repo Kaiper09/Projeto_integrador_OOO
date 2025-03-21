@@ -44,9 +44,9 @@ export class ClienteRepository{
         await this.pool.query(query,[cpf, nome, nascimento, numero, cidade])
     }
 
-    async atualizarCliente(nome, nascimento, numero, cidade, cpf){
+    async atualizarCliente(cpf: string,nome:string, nascimento: Date, numero: bigint, cidade: string){
         let query= "UPDATE servicos.clientes SET nome=$1, nascimento=$2, numero=$3, cidade=$4 WHERE cpf=$5"
-        await this.pool.query(query,[nome, nascimento, numero, cidade, cpf])
+        await this.pool.query(query,[nome, nascimento, numero, cidade,cpf])
     }
 
     async verificarCpf(cpf: string):Promise<Cliente[]>{
@@ -59,6 +59,11 @@ export class ClienteRepository{
             listaCliente.push(cliente)
         }
         return listaCliente;
-
-    }     
+    }  
+    
+    async deleterCliente(cpf: string){
+        const query ="DELETE FROM servicos.clientes WHERE cpf= $1"
+        await this.pool.query(query,[cpf])
+        
+    }
 }
