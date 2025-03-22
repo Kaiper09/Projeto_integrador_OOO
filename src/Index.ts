@@ -5,12 +5,12 @@ async function menuTestePagamento(){
 }
 menuTestePagamento()*/
 
-/*import { TrabalhoView } from "./view/TrabalhoView";
+import { TrabalhoView } from "./view/TrabalhoView";
 async function menutestetrabalho(){
   const trabalhoView = new TrabalhoView()
   await trabalhoView.exibirMenuTrabalho()
 }
-menutestetrabalho()*/
+menutestetrabalho()
   
 /*import { VeiculoView } from "./view/VeiculoView";
 
@@ -21,14 +21,14 @@ async function menutesteveiculo(){
 
 menutesteveiculo()*/
 
-import { ClienteView } from "./view/ClienteView";
+/*import { ClienteView } from "./view/ClienteView";
 
 async function menuteste() {
   const clienteView = new ClienteView(); 
   await clienteView.exibirMenu(); 
 }
 
-menuteste()
+menuteste()*/
 
 /*import { ClienteService } from "./service/ClienteService";
 

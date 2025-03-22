@@ -11,4 +11,9 @@ export class Trabalho{
         this.data = data;
         this.placa_veiculo_id = placa_veiculo_id;
     }
+
+    public getIdservico(): number{
+        return this.id_servico
+
+    }
 }

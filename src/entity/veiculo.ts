@@ -13,4 +13,8 @@ export class Veiculo {
         this.nome_veiculo = nome_veiculo;
         this.km_veiculo = km_veiculo;
     }
+
+    public getPlaca(): string{
+        return this.placa_veiculo
+    }
 }

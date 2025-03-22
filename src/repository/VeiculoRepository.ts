@@ -41,7 +41,12 @@ export class VeiculoRepository {
     }
 
     async atualizarVeiculo(cpf_dono: string, placa_veiculo: string, ano: string, nome_veiculo: string, km_veiculo: string ){
-        let query = 'UPDATE servicos.veiculos SET cpf_dono=$1 ano=$2, nome_veiculo=$3, km_veiculo=$4 WHERE placa_veiculo=$5'
+        let query = 'UPDATE servicos.veiculos SET cpf_dono=$1, ano=$2, nome_veiculo=$3, km_veiculo=$4 WHERE placa_veiculo=$5'
         await this.pool.query(query, [cpf_dono, ano, nome_veiculo, km_veiculo, placa_veiculo])
+    }
+
+    async deletarVeiculo(placa_veiculo: string){
+        const query ='DELETE FROM servicos.veiculos WHERE placa_veiculo=$1'
+        await this.pool.query(query,[placa_veiculo]) 
     }
 }

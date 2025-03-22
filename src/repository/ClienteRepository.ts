@@ -49,18 +49,6 @@ export class ClienteRepository{
         await this.pool.query(query,[nome, nascimento, numero, cidade,cpf])
     }
 
-    async verificarCpf(cpf: string):Promise<Cliente[]>{
-        const query = "SELECT * FROM SERVICOS.CLIENTES WHERE cpf= $1";
-        let listaCliente: Cliente[] = []
-        const result = await this.pool.query(query, [cpf]);
-
-        for(const row of result.rows){
-            const cliente= new Cliente(row.cpf, row.nome, row.nascimento, row.numero, row.cidade)
-            listaCliente.push(cliente)
-        }
-        return listaCliente;
-    }  
-    
     async deleterCliente(cpf: string){
         const query ="DELETE FROM servicos.clientes WHERE cpf= $1"
         await this.pool.query(query,[cpf])
