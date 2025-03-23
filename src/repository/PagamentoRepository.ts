@@ -38,5 +38,10 @@ export class PagamentosRepository{
     async adicionarPagamento(id_servico: number, data: string, metodo: string, valor:string){
         let query="INSERT INTO SERVICOS.PAGAMENTOS (id_servico, data, metodo, valor) VALUES ($1,$2, $3, $4)";
         await this.pool.query(query,[id_servico, data, metodo, valor])
-    }  
+    } 
+    
+    async atualizarPagamento(id_servico: number, data: Date, metodo: string, valor: string ){
+        let query ="UPDATE servicos.pagamentos SET data=$!, metodo=$2, valor=$3 WHERE id_servico=$4"
+        await this.pool.query(query, [data, metodo, valor, id_servico])
+    }
 }

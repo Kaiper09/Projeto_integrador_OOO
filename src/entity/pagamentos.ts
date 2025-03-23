@@ -10,6 +10,10 @@ export class Pagamentos{
         this.metodo = metodo;
         this.valor = valor;
     }
+
+    public getId(): number{
+        return this.id_servico
+    }
 }
 
 

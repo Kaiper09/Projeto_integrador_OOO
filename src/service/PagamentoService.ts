@@ -25,5 +25,10 @@ export class PagamentosService{
         await this.repo.adicionarPagamento(id_servico, data, metodo, valor)
 
     }
+
+    async atualizarPagamento(id_servico: number, data: Date, metodo: string, valor: string ){
+        let pagamento = await this.listarPagamentos()
+        const pagametnoExistente = pagamento.find(pagamento => pagamento.getId() === id_servico)
+    }
     
 }
