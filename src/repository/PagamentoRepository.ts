@@ -44,4 +44,9 @@ export class PagamentosRepository{
         let query ="UPDATE servicos.pagamentos SET data=$!, metodo=$2, valor=$3 WHERE id_servico=$4"
         await this.pool.query(query, [data, metodo, valor, id_servico])
     }
+
+    async deletarPagamento(id_servico){
+        const query = "DELETE FROM servicos.pagamentos WHERE id_servico=$1"
+        await this.pool.query(query,[id_servico])
+    }
 }

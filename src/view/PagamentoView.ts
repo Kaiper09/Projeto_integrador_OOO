@@ -2,9 +2,9 @@ import PromptSync, { Prompt } from "prompt-sync";
 import { PagamentosService } from "../service/PagamentoService";
 
 
-export class PagamentoView{
+export class PagamentoView {
     private prompt: Prompt;
-    private pagamento: PagamentosService ;
+    private pagamento: PagamentosService;
 
     constructor() {
         this.pagamento = new PagamentosService()
@@ -16,7 +16,9 @@ export class PagamentoView{
         console.log("1- Listar pagamentos")
         console.log("2- Procurar pagamento")
         console.log("3- Adicionar pagamento")
-        console.log("4- Sair")
+        console.log("4- Atualizar pagamento")
+        console.log("5- Deletar pagamento")
+        console.log("6- Sair")
         const pergunta = this.prompt("O que deseja fazer? (apenas núemeros!!!): ")
 
         switch (pergunta) {
@@ -32,7 +34,7 @@ export class PagamentoView{
 
             case "3":
                 let addid = this.prompt("Digite o ID do novo pagamento: ")
-                let adddata= this.prompt("Digite a data do pagamento: ")
+                let adddata = this.prompt("Digite a data do pagamento (yyyy-mm-dd): ")
                 let addmetodo = this.prompt("Digite o metodo: ")
                 let addvalor = this.prompt("Digite o valor: ")
                 await this.pagamento.adicionarPagamento(parseInt(addid), adddata, addmetodo, addvalor)
@@ -41,6 +43,19 @@ export class PagamentoView{
                 return this.exibirMenuPagamento()
 
             case "4":
+                let perguntar_id = parseInt(this.prompt("Digite o id do serviço que deseja atualizar: "))
+                let newData = this.prompt("Digite a data do pagamento (yyyy-mm-dd): ")
+                let newMetodo = this.prompt("Digite o novo metodo: ")
+                let newValor = this.prompt("Digite o valor: ")
+                await this.pagamento.atualizarPagamento(Number(perguntar_id), new Date(newData), newMetodo, newValor)
+                return this.exibirMenuPagamento()
+
+            case "5":
+                let perguntar_delet = parseInt(this.prompt("Digite o id do serviço que deseja deletar: "))
+                await this.pagamento.deletarPagamento(perguntar_delet)
+                return this.exibirMenuPagamento()
+
+            case "6":
                 console.log("Você saiu")
                 break
             default:

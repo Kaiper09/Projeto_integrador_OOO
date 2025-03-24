@@ -26,9 +26,40 @@ export class PagamentosService{
 
     }
 
-    async atualizarPagamento(id_servico: number, data: Date, metodo: string, valor: string ){
+    async atualizarPagamento(id_servico: number, data: Date, metodo: string, valor: string) {
         let pagamento = await this.listarPagamentos()
         const pagametnoExistente = pagamento.find(pagamento => pagamento.getId() === id_servico)
+
+        if (!pagametnoExistente) {
+            console.log("Pagamento não encontrado")
+            return
+        }
+
+        if (typeof id_servico !== 'number' || id_servico <= 0) {
+            console.log('O id_servico deve ser um número maior que 0');
+            return
+        }
+
+        const pagPermitidos = ['pix', 'cartao', 'dinheiro']
+        if (!pagPermitidos) {
+            console.log("Método de pagamento inválido")
+            return
+        }
+        await this.repo.atualizarPagamento(id_servico, data, metodo, valor)
+        console.log("Pagametno atualizado com sucesso")
     }
-    
+
+    async deletarPagamento(id_servico:number){
+        let pagamento = await this.listarPagamentos()
+        const pagametnoExistente = pagamento.find(pagamento => pagamento.getId() === id_servico)
+
+        if (!pagametnoExistente) {
+            console.log("Pagamento não encontrado")
+            return
+        }
+
+        await this.repo.deletarPagamento(id_servico)
+        console.log("Pagamento deletado com sucesso")
+    }
+
 }
