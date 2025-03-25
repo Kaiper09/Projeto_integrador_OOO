@@ -25,16 +25,28 @@ export class VeiculoService {
     }
 
     async adiocionarVeiculo(cpf_dono: string, placa_veiculo: string, ano: string, nome_veiculo: string, km_veiculo: string) {
+         
+        const regexPlaca1= /^[A-Za-z]{3}-\d{4}$/
+        const regexPlaca2 = /^[A-Za-z]{2}\d{2}[A-Za-z]{1}\d{2}$/;
+        if(regexPlaca1.test(placa_veiculo) || regexPlaca2.test(placa_veiculo)){
+            console.log("Placa inválida, a placa deve estar no formato xxx-1234 ou xx12x34.")
+
+        }
+
+        
         const anoValido = /^[12]\d{3}$/;
         if (!anoValido.test(ano)) {
             throw new Error("Ano do veículo inválido");
         }
 
-
         if (!nome_veiculo || nome_veiculo.trim() === "") {
             throw new Error("Nome do veículo não pode ser vazio");
         }
 
+        if (/\d/.test(nome_veiculo)) {
+            console.log("Nome inválido! Não pode conter números.");
+            return;
+        }
 
         const km = parseFloat(km_veiculo);
         if (isNaN(km) || km < 0) {
@@ -42,6 +54,7 @@ export class VeiculoService {
         }
 
         await this.repo.adicionarVeiculo(cpf_dono, placa_veiculo, ano, nome_veiculo, km_veiculo)
+        console.log("Veículo adicionado com sucesso")
     }
 
     async atualizarVeiculo(cpf_dono: string, placa_veiculo: string, ano: string, nome_veiculo: string, km_veiculo: string) {
@@ -53,6 +66,11 @@ export class VeiculoService {
 
         if (!nome_veiculo || nome_veiculo.trim() === "") {
             throw new Error("Nome do veículo não pode ser vazio");
+        }
+
+        if (/\d/.test(nome_veiculo)) {
+            console.log("Nome inválido! Não pode conter números.");
+            return;
         }
 
         const km = parseFloat(km_veiculo);

@@ -1,5 +1,12 @@
 import PromptSync, { Prompt } from "prompt-sync";
 import { TrabalhoService } from "../service/TrabalhoService"
+import { MenuPrincipalView } from "./MenuPrincipalView";
+
+
+async function manuPrincipal(){
+    const menuDosMenus = new MenuPrincipalView()
+    await menuDosMenus.menuPrimcipalView()
+  } 
 
 
 export class TrabalhoView {
@@ -18,7 +25,7 @@ export class TrabalhoView {
         console.log("3- Adicionar trabalho")
         console.log("4- Atualizar trabalho")
         console.log("5- Deletar trabalho")
-        console.log("6- Sair do menu")
+        console.log("6- Sair do menu Trabalhos")
         const pergunta = this.prompt("O que deseja fazer? (apenas núemeros!!!): ")
 
         switch (pergunta) {
@@ -59,8 +66,8 @@ export class TrabalhoView {
 
 
             case "6":
-                console.log("Você saiu")
-                break
+                console.log("Você saiu do menu Trabalho")
+                return manuPrincipal()
             default:
                 console.log("Insira uma opção valida")
                 return this.exibirMenuTrabalho()

@@ -28,21 +28,27 @@ export class ClienteService {
     }
 
     async adicionarCliente(cpf: string, nome: string, nascimento: Date, numero: bigint, ciade: string) {
-        
-        const telefonevalido = numero.toString().length >= 10;
-        if (!telefonevalido) {
-            throw new Error("O número de celular deve ter pelo menos 10 dígitos!!!");
-        } 
-    
-        if (!nome){
-            console.log("Nome inválido")
-            return
+
+        const regexCpf = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+        if (!regexCpf.test(cpf)) {
+            console.log("CPF inválido! O CPF deve estar no formato xxx.xxx.xxx-xx.");
+            return;
+        }
+
+        if (/\d/.test(nome)) {
+            console.log("Nome inválido! Não pode conter números.");
+            return;
         }
 
         if (isNaN(Number(numero))) {
-            console.log("Número inválido")
+            console.log("Número inválido, apneas núemros permetidos")
             return
         }
+
+        const telefonevalidoAdd = numero.toString().length >= 10;
+        if (!telefonevalidoAdd) {
+            throw new Error("O número de celular deve ter pelo menos 10 dígitos!!!");
+        } 
 
         if (nascimento) {
             const dataNascimento = new Date(nascimento);
@@ -54,14 +60,15 @@ export class ClienteService {
             }
 
         }
+        
 
         await this.repo.adicionarCliente(cpf, nome, nascimento, numero, ciade)
+        console.log("CLiente adicionado com sucesso")
     }
 
 
     async atualizarCliente(cpf:string ,nome:string, nascimento: Date, numero: bigint, cidade:string,) {
         const clientes = await this.listarClientes();
-
         const clienteExistente = clientes.find(cliente => cliente.getCpf() === cpf);
 
         if (!clienteExistente) {
@@ -69,15 +76,20 @@ export class ClienteService {
             return; 
         }
         
-        if (!nome){
-            console.log("Nome inválido")
-            return
+        if (/\d/.test(nome)) {
+            console.log("Nome inválido! Não pode conter números.");
+            return;
         }
 
         if (isNaN(Number(numero))) {
             console.log("Número inválido")
             return
         }
+
+        const telefonevalidoAdd = numero.toString().length >= 10;
+        if (!telefonevalidoAdd) {
+            throw new Error("O número de celular deve ter pelo menos 10 dígitos!!!");
+        } 
 
         if (nascimento) {
             const dataNascimento = new Date(nascimento);
@@ -90,11 +102,7 @@ export class ClienteService {
 
         }
 
-        const telefonevalido = numero.toString().length >= 10;
-        if (!telefonevalido) {
-            throw new Error("O número de celular deve ter pelo menos 10 dígitos!!!");
-        }
-       
+
         await this.repo.atualizarCliente(cpf, nome ,nascimento, numero, cidade)
         console.log("Cliente atualizadp com sucesso!!!")
     }

@@ -1,34 +1,43 @@
+import { MenuPrincipalView } from "./view/MenuPrincipalView";
+
+async function manuIndex(){
+  const menuDosMenus = new MenuPrincipalView()
+  await menuDosMenus.menuPrimcipalView()
+}
+manuIndex()
+
+
 /*import { PagamentoView } from "./view/PagamentoView";
-async function menuTestePagamento(){
+async function menuPagamento(){
   const pagamentosView = new PagamentoView()
   await pagamentosView.exibirMenuPagamento()
 }
-menuTestePagamento()*/
+menuPagamento()*/
 
-import { TrabalhoView } from "./view/TrabalhoView";
-async function menutestetrabalho(){
+/*import { TrabalhoView } from "./view/TrabalhoView";
+async function menuTrabalho(){
   const trabalhoView = new TrabalhoView()
   await trabalhoView.exibirMenuTrabalho()
 }
-menutestetrabalho()
+menuTrabalho()*/
   
 /*import { VeiculoView } from "./view/VeiculoView";
 
-async function menutesteveiculo(){
+async function menutVeiculo(){
   const veiculoView = new VeiculoView()
   await veiculoView.exibirMenuVeiculo()
 }
 
-menutesteveiculo()*/
+menutVeiculo()*/
 
 /*import { ClienteView } from "./view/ClienteView";
 
-async function menuteste() {
+async function menuCLiente() {
   const clienteView = new ClienteView(); 
   await clienteView.exibirMenu(); 
 }
 
-menuteste()*/
+menuCLiente()*/
 
 /*import { ClienteService } from "./service/ClienteService";
 

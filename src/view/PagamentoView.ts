@@ -1,5 +1,13 @@
 import PromptSync, { Prompt } from "prompt-sync";
 import { PagamentosService } from "../service/PagamentoService";
+import { MenuPrincipalView } from "./MenuPrincipalView";
+
+
+
+async function manuPrincipal(){
+    const menuDosMenus = new MenuPrincipalView()
+    await menuDosMenus.menuPrimcipalView()
+  }
 
 
 export class PagamentoView {
@@ -56,8 +64,8 @@ export class PagamentoView {
                 return this.exibirMenuPagamento()
 
             case "6":
-                console.log("Você saiu")
-                break
+                console.log("Você saiu do menu Pagamento")
+                return manuPrincipal()
             default:
                 console.log("Insira uma opção valida")
                 return this.exibirMenuPagamento()

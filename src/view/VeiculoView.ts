@@ -1,5 +1,11 @@
 import PromptSync, { Prompt } from "prompt-sync";
 import { VeiculoService } from "../service/VeiculoService"
+import { MenuPrincipalView } from "./MenuPrincipalView";
+
+async function manuPrincipal(){
+    const menuDosMenus = new MenuPrincipalView()
+    await menuDosMenus.menuPrimcipalView()
+  }
 
 export class VeiculoView {
     private prompt: Prompt;
@@ -17,7 +23,7 @@ export class VeiculoView {
         console.log("3- Adicionar veiculo")
         console.log("4- Atualizar dados do veículo")
         console.log("5- Deletar Veículo")
-        console.log("6- Sair do menu")
+        console.log("6- Sair do menu Veículos")
         const pergunta = this.prompt("O que deseja fazer? (apenas núemeros!!!): ")
 
 
@@ -57,8 +63,8 @@ export class VeiculoView {
             
 
             case "6":
-                console.log("Você saiu")
-                break
+                console.log("Você saiu do menu Veículo")
+                return manuPrincipal()
             default:
                 console.log("Insira uma opção valida")
                 return this.exibirMenuVeiculo()
