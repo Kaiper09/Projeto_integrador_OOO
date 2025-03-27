@@ -36,7 +36,7 @@ export class MenuPrincipalView {
 
 
     public async menuPrimcipalView() {
-        console.log(chalk.cyan.black('-------------- Bem Vindo ao site Mecânica+ --------------'));
+        console.log(chalk.cyan.black('-------------- Bem Vindo ao site Mecânica.Admin--------------'));
         console.log(chalk.blue.bold(' 1 - Menu dos Clientes '));
         console.log(chalk.gray.bold(' 2 - Menu dos Veículos '));
         console.log(chalk.yellow.bold(' 3 - Menu dos Trabalhos '));

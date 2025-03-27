@@ -23,6 +23,13 @@ export class TrabalhoService {
         if (!trabalho_feito || trabalho_feito.trim() === "") {
             throw new Error("Descrição do trabalho feito não pode ser vazia");
         }
+
+        const placa =  await this.listarTrabalho()
+        const placa_existente = placa.find(placa => placa.getplaca() === placa_veiculo_id)
+        if(!placa_existente){
+            console.log("Placa não encontrada na tabela de veículos")
+        }
+        
         await this.repo.adicionarTrabalho(id_servico, trabalho_feito, data, placa_veiculo_id)
 
     }

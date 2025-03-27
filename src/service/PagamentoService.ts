@@ -24,6 +24,17 @@ export class PagamentosService{
     async adicionarPagamento(id_servico: number, data: string, metodo: string, valor: string ){
         await this.repo.adicionarPagamento(id_servico, data, metodo, valor)
 
+        if (typeof id_servico !== 'number' || id_servico <= 0) {
+            console.log('O id_servico deve ser um número maior que 0');
+            return
+        }
+
+        const pagPermitidos = ['pix', 'cartao', 'dinheiro']
+        if (!pagPermitidos) {
+            console.log("Método de pagamento inválido")
+            return
+        }
+
     }
 
     async atualizarPagamento(id_servico: number, data: Date, metodo: string, valor: string) {

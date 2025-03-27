@@ -61,11 +61,13 @@ export class VeiculoService {
         
         const anoValido = /^[12]\d{3}$/;
         if (!anoValido.test(ano)) {
-            throw new Error("Ano do veículo inválido");
+           console.log("Ano do veículo inválido");
+           return
         }
 
         if (!nome_veiculo || nome_veiculo.trim() === "") {
-            throw new Error("Nome do veículo não pode ser vazio");
+           console.log("Nome do veículo não pode ser vazio");
+           return
         }
 
         if (/\d/.test(nome_veiculo)) {
@@ -75,7 +77,8 @@ export class VeiculoService {
 
         const km = parseFloat(km_veiculo);
         if (isNaN(km) || km < 0) {
-            throw new Error("Quilometragem do veículo inválida");
+           console.log("Quilometragem do veículo inválida");
+           return
         }
         await this.repo.atualizarVeiculo(placa_veiculo, cpf_dono, ano, nome_veiculo, km_veiculo)
         console.log("Veiculo atualizado com sucesso")

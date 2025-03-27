@@ -14,6 +14,9 @@ export class Trabalho{
 
     public getIdservico(): number{
         return this.id_servico
+    }
 
+    public getplaca(){
+        return this.placa_veiculo_id
     }
 }

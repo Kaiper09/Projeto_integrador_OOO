@@ -57,6 +57,7 @@ export class ClienteView {
                 return this.exibirMenu();
 
             case "5":
+                console.table(await this.cliente.listarClientes());
                 let deletarCpf= this.prompt("Digite o CPF do cliente que deseja deletar: ")
                 await this.cliente.deletarCliente(deletarCpf)
                 return this.exibirMenu()

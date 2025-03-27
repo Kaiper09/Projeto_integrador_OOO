@@ -41,13 +41,12 @@ export class ClienteService {
         }
 
         if (isNaN(Number(numero))) {
-            console.log("Número inválido, apneas núemros permetidos")
-            return
+           console.log("Número inválido, apneas núemros permetidos")  
         }
 
         const telefonevalidoAdd = numero.toString().length >= 10;
         if (!telefonevalidoAdd) {
-            throw new Error("O número de celular deve ter pelo menos 10 dígitos!!!");
+            console.log("O número de celular deve ter pelo menos 10 dígitos!!!");
         } 
 
         if (nascimento) {
@@ -65,7 +64,6 @@ export class ClienteService {
         await this.repo.adicionarCliente(cpf, nome, nascimento, numero, ciade)
         console.log("CLiente adicionado com sucesso")
     }
-
 
     async atualizarCliente(cpf:string ,nome:string, nascimento: Date, numero: bigint, cidade:string,) {
         const clientes = await this.listarClientes();
@@ -92,9 +90,9 @@ export class ClienteService {
         } 
 
         if (nascimento) {
-            const dataNascimento = new Date(nascimento);
-            const hoje = new Date();
-            let idade = hoje.getFullYear() - dataNascimento.getFullYear();
+            const dataNascimentoUsuario = new Date(nascimento);
+            const datahoje = new Date();
+            let idade = datahoje.getFullYear() - dataNascimentoUsuario.getFullYear();
             if (idade < 18) {
                 console.log("O cliente deve ser maior de idade.");
                 return;
