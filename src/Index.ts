@@ -14,12 +14,12 @@ async function menuPagamento(){
 }
 menuPagamento()*/
 
-/*import { TrabalhoView } from "./view/TrabalhoView";
-async function menuTrabalho(){
-  const trabalhoView = new TrabalhoView()
-  await trabalhoView.exibirMenuTrabalho()
+/*import { ServicosView } from "./view/ServicosView";
+async function menuServicos(){
+  const servicosView = new ServicosView()
+  await servicosView.exibirMenuServicos()
 }
-menuTrabalho()*/
+menuServicos()*/
   
 /*import { VeiculoView } from "./view/VeiculoView";
 
@@ -90,16 +90,16 @@ async function testeveiculo(){
 
 testeveiculo()*/
 
-/*import { TrabalhoService } from "./service/TrabalhoService";
+/*import { ServicosService } from "./service/ServicosService";
 
-const trabalho1 = new TrabalhoService();
+const servicos1 = new ServicosService();
 
-async function testetrabalho(){
+async function testeservicos(){
 
-  console.table(await trabalho1.listarTrabalho())
+  console.table(await servicos1.listarServicos())
 }
 
-testetrabalho()*/
+testeservicos()*/
   
 /*import { PagamentosService } from "./service/PagamentoService";
 const pagamento1 = new PagamentosService();

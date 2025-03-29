@@ -21,8 +21,8 @@ export class PagamentosService{
         }
         return listaPagamentos
     }
-    async adicionarPagamento(id_servico: number, data: string, metodo: string, valor: string ){
-        await this.repo.adicionarPagamento(id_servico, data, metodo, valor)
+    async adicionarPagamento(id_servico: number, data: string, metodo: string, situacao:string, valor: string ){
+        await this.repo.adicionarPagamento(id_servico, data, metodo, situacao, valor)
 
         if (typeof id_servico !== 'number' || id_servico <= 0) {
             console.log('O id_servico deve ser um número maior que 0');
@@ -37,7 +37,7 @@ export class PagamentosService{
 
     }
 
-    async atualizarPagamento(id_servico: number, data: Date, metodo: string, valor: string) {
+    async atualizarPagamento(id_servico: number, data: Date, metodo: string, situacao:string ,valor: string) {
         let pagamento = await this.listarPagamentos()
         const pagametnoExistente = pagamento.find(pagamento => pagamento.getId() === id_servico)
 
@@ -56,7 +56,13 @@ export class PagamentosService{
             console.log("Método de pagamento inválido")
             return
         }
-        await this.repo.atualizarPagamento(id_servico, data, metodo, valor)
+
+        const situPermitidas = ['pendente', 'paga']
+        if(!situPermitidas){
+            console.log("Situação inválida! Apenas perndente e paga")
+            return
+        }
+        await this.repo.atualizarPagamento(id_servico, data, metodo, situacao ,valor)
         console.log("Pagametno atualizado com sucesso")
     }
 
