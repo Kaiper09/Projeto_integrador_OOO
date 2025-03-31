@@ -66,6 +66,9 @@ export class PagamentoView {
                 await this.pagamento.deletarPagamento(perguntar_delet)
                 return this.exibirMenuPagamento()
 
+            case "6":
+               await this.pagamento.pagamentosPendentes()
+
            
             case "7":
                 console.log("Você saiu do menu Pagamento")

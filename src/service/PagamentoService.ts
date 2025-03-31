@@ -79,4 +79,9 @@ export class PagamentosService{
         console.log("Pagamento deletado com sucesso")
     }
 
+    async pagamentosPendentes(situacao: string){
+        await this.repo.pagamentosPendentes(situacao)
+
+    }
+
 }

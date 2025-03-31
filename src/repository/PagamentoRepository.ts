@@ -49,4 +49,11 @@ export class PagamentosRepository{
         const query = "DELETE FROM servicos.pagamentos WHERE id_servico=$1"
         await this.pool.query(query,[id_servico])
     }
+
+    async pagamentosPendentes(situacao: string){
+        const query= "SELECT * FROM SERVICOS.PAGAMENTOS WHERE situacao=$1"
+        const result = await this.pool.query(query,[situacao])
+
+    }
 }
+
