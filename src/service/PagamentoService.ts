@@ -21,8 +21,8 @@ export class PagamentosService{
         }
         return listaPagamentos
     }
-    async adicionarPagamento(id_servico: number, data: string, metodo: string, situacao:string, valor: string ){
-        await this.repo.adicionarPagamento(id_servico, data, metodo, situacao, valor)
+    async adicionarPagamento(id_servico: number, data: Date, metodo: string, situacao:string, data_vencimento: Date){
+        await this.repo.adicionarPagamento(id_servico, new Date (data), metodo, situacao, new Date(data_vencimento))
 
         if (typeof id_servico !== 'number' || id_servico <= 0) {
             console.log('O id_servico deve ser um número maior que 0');
@@ -37,7 +37,7 @@ export class PagamentosService{
 
     }
 
-    async atualizarPagamento(id_servico: number, data: Date, metodo: string, situacao:string ,valor: string) {
+    async atualizarPagamento(id_servico: number, data: Date, metodo: string, situacao:string , data_vencimento: Date) {
         let pagamento = await this.listarPagamentos()
         const pagametnoExistente = pagamento.find(pagamento => pagamento.getId() === id_servico)
 
@@ -62,7 +62,7 @@ export class PagamentosService{
             console.log("Situação inválida! Apenas perndente e paga")
             return
         }
-        await this.repo.atualizarPagamento(id_servico, data, metodo, situacao ,valor)
+        await this.repo.atualizarPagamento(id_servico, data, metodo, situacao , new Date(data_vencimento))
         console.log("Pagametno atualizado com sucesso")
     }
 
@@ -79,8 +79,13 @@ export class PagamentosService{
         console.log("Pagamento deletado com sucesso")
     }
 
-    async pagamentosPendentes(situacao: string){
-        await this.repo.pagamentosPendentes(situacao)
+    async pagamentosPendentes():Promise<Pagamentos[]>{
+        return await this.repo.pagamentosPendentes()
+
+    }
+
+    async pagamentosPagos():Promise<Pagamentos[]>{
+        return await this.repo.pagamentosPagos()
 
     }
 

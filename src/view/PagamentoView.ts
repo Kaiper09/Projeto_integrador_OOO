@@ -27,7 +27,8 @@ export class PagamentoView {
         console.log("4- Atualizar pagamento")
         console.log("5- Deletar pagamento")
         console.log("6- Visualizar pagamentos pendendes")
-        console.log("7- Sair")
+        console.log("7- Visualizar pagametnos pagos")
+        console.log("8- Sair")
         const pergunta = this.prompt("O que deseja fazer? (apenas núemeros!!!): ")
 
         switch (pergunta) {
@@ -46,8 +47,8 @@ export class PagamentoView {
                 let adddata = this.prompt("Digite a data do pagamento (yyyy-mm-dd): ")
                 let addmetodo = this.prompt("Digite o metodo: ")
                 let addsituacao= this.prompt("Informe a situaçao: ")
-                let addvalor = this.prompt("Digite o valor: ")
-                await this.pagamento.adicionarPagamento(parseInt(addid), adddata, addmetodo, addsituacao ,addvalor)
+                let addVencimento= this.prompt("Informe a data de vencimetno (yyyy-mm-dd): ")
+                await this.pagamento.adicionarPagamento(parseInt(addid), new Date(adddata), addmetodo, addsituacao, new Date (addVencimento))
                 console.log("Pagamento adicionado com sucesso!!!")
                 console.table(await this.pagamento.listarPagamentos())
                 return this.exibirMenuPagamento()
@@ -57,8 +58,8 @@ export class PagamentoView {
                 let newData = this.prompt("Digite a data do pagamento (yyyy-mm-dd): ")
                 let newMetodo = this.prompt("Digite o novo metodo: ")
                 let newSituacao= this.prompt("Digite a situação: ")
-                let newValor = this.prompt("Digite o valor: ")
-                await this.pagamento.atualizarPagamento(Number(perguntar_id), new Date(newData), newMetodo, newSituacao, newValor)
+                let newVencimento= this.prompt("Informe a data de vencimetno (yyyy-mm-dd): ")
+                await this.pagamento.atualizarPagamento(Number(perguntar_id), new Date(newData), newMetodo, newSituacao, new Date(newVencimento))
                 return this.exibirMenuPagamento()
 
             case "5":
@@ -67,10 +68,16 @@ export class PagamentoView {
                 return this.exibirMenuPagamento()
 
             case "6":
-               await this.pagamento.pagamentosPendentes()
-
-           
+               const pagametnos = await this.pagamento.pagamentosPendentes()
+               console.table(pagametnos)
+               return await this.exibirMenuPagamento()
+            
             case "7":
+                const pagametnosPagos = await this.pagamento.pagamentosPagos()
+                console.table(pagametnosPagos)
+                return await this.exibirMenuPagamento()
+             
+            case "8":
                 console.log("Você saiu do menu Pagamento")
                 return manuPrincipal()
             default:

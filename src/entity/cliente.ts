@@ -1,6 +1,6 @@
 export class Cliente {
     private cpf: string
-    private nome: string
+    protected nome: string
     private nascimento: Date
     private numero: bigint
     private cidade: string
