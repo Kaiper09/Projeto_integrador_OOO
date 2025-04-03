@@ -31,22 +31,21 @@ export class ClienteService {
 
         const regexCpf = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
         if (!regexCpf.test(cpf)) {
-            console.log("CPF inválido! O CPF deve estar no formato xxx.xxx.xxx-xx.");
-            return;
+            throw new Error ("CPF inválido! O CPF deve estar no formato xxx.xxx.xxx-xx."); 
         }
 
         if (/\d/.test(nome)) {
-            console.log("Nome inválido! Não pode conter números.");
-            return;
+            throw new Error ("Nome inválido! Não pode conter números.");     
         }
 
+        
         if (isNaN(Number(numero))) {
-           console.log("Número inválido, apneas núemros permetidos")  
+            throw new Error ("Número inválido, apneas núemros permetidos")  
         }
 
         const telefonevalidoAdd = numero.toString().length >= 10;
         if (!telefonevalidoAdd) {
-            console.log("O número de celular deve ter pelo menos 10 dígitos!!!");
+            throw new Error("O número de celular deve ter pelo menos 10 dígitos!!!");
         } 
 
         if (nascimento) {
@@ -54,8 +53,7 @@ export class ClienteService {
             const hoje = new Date();
             let idade = hoje.getFullYear() - dataNascimento.getFullYear();
             if (idade < 18) {
-                console.log("O cliente deve ser maior de idade.");
-                return;
+                throw new Error ("O cliente deve ser maior de idade.");
             }
 
         }
@@ -70,18 +68,17 @@ export class ClienteService {
         const clienteExistente = clientes.find(cliente => cliente.getCpf() === cpf);
 
         if (!clienteExistente) {
-            console.log("CPF não encontrado");
-            return; 
+            throw new Error ("CPF não encontrado");
         }
         
         if (/\d/.test(nome)) {
-            console.log("Nome inválido! Não pode conter números.");
-            return;
+             throw new Error ("Nome inválido! Não pode conter números.");
+            
         }
 
         if (isNaN(Number(numero))) {
-            console.log("Número inválido")
-            return
+            throw new Error ("Número inválido")
+            
         }
 
         const telefonevalidoAdd = numero.toString().length >= 10;
@@ -94,15 +91,13 @@ export class ClienteService {
             const datahoje = new Date();
             let idade = datahoje.getFullYear() - dataNascimentoUsuario.getFullYear();
             if (idade < 18) {
-                console.log("O cliente deve ser maior de idade.");
-                return;
+                throw new Error  ("O cliente deve ser maior de idade.");
             }
 
         }
 
-
         await this.repo.atualizarCliente(cpf, nome ,nascimento, numero, cidade)
-        console.log("Cliente atualizadp com sucesso!!!")
+        console.log("Cliente atualizado com sucesso!!!")
     }
 
     async deletarCliente(cpf: string){
@@ -111,8 +106,7 @@ export class ClienteService {
         const clienteExistente = clientes.find(cliente => cliente.getCpf() === cpf);
 
         if (!clienteExistente) {
-            console.log("CPF não encontrado");
-            return; 
+            throw new Error ("CPF não encontrado");    
         }
     
         await this.repo.deleterCliente(cpf);

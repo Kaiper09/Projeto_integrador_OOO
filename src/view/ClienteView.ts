@@ -41,7 +41,7 @@ export class ClienteView {
                 let addcpf = this.prompt("Digite o seu CPF (formato xxx.xxx.xxx-xx): ")
                 let addnome = this.prompt("Digite o seu nome: ")
                 let addnascimento = this.prompt("Digite o seu nascimento (yyyy-mm-dd): ")
-                let addnumero = parseInt(this.prompt("Digite o seu numero: "))
+                let addnumero = parseInt(this.prompt("Digite o seu numero minimo 10 digitos: "))
                 let addcidade = this.prompt("Digite o sua cidade: ")
                 await this.cliente.adicionarCliente(addcpf, addnome, new Date(addnascimento), BigInt(addnumero), addcidade)
                 return this.exibirMenu()
@@ -51,7 +51,7 @@ export class ClienteView {
                 let perguntaCpf = this.prompt("Digite o CPF do cliente que deseja atualizar as informações: ")
                 let nomenew = this.prompt("Digite o novo seu nome: ")
                 let nascimentonew = this.prompt("Digite o seu nascimento (yyyy-mm-dd): ")
-                let numeronew = parseInt(this.prompt("Digite o numero: "))
+                let numeronew = parseInt(this.prompt("Digite o numero minimmo 10 digitos: "))
                 let cidadenew = this.prompt("Digite a cidade: ")
                 await this.cliente.atualizarCliente(perguntaCpf, nomenew, new Date (nascimentonew), BigInt(numeronew), cidadenew);
                 return this.exibirMenu();

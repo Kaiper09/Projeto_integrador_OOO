@@ -11,7 +11,7 @@ export class PagamentosRepository{
     }
 
     async listarPagamentos():Promise<RelatorioPAG[]>{
-        const query = "SELECT p.id_servico, c.nome, v.placa_veiculo, s.trabalho_feito ,p.data, p.metodo, p.situacao, p.data_vencimento FROM servicos.pagamentos p JOIN servicos.servicos s ON s.id_servico= p.id_servico JOIN servicos.veiculos v ON v.placa_veiculo = s.placa_veiculo_id JOIN servicos.clientes c ON c.cpf = v.cpf_dono"
+        const query = "SELECT p.id_servico, c.nome, v.placa_veiculo, v.nome_veiculo ,s.trabalho_feito ,p.data, p.metodo, p.situacao, p.data_vencimento FROM servicos.pagamentos p JOIN servicos.servicos s ON s.id_servico= p.id_servico JOIN servicos.veiculos v ON v.placa_veiculo = s.placa_veiculo_id JOIN servicos.clientes c ON c.cpf = v.cpf_dono"
 
         const result = await this.pool.query(query);
 
@@ -53,7 +53,7 @@ export class PagamentosRepository{
     }
 
     async pagamentosPendentes():Promise<RelatorioPAG[]>{
-        const query= "SELECT p.id_servico, c.nome, v.placa_veiculo, s.trabalho_feito ,p.data, p.metodo, p.situacao, p.data_vencimento FROM servicos.pagamentos p JOIN servicos.servicos s ON s.id_servico= p.id_servico JOIN servicos.veiculos v ON v.placa_veiculo = s.placa_veiculo_id JOIN servicos.clientes c ON c.cpf = v.cpf_dono WHERE situacao='pendente'"
+        const query= "SELECT p.id_servico, c.nome, v.placa_veiculo, v.nome_veiculo, s.trabalho_feito ,p.data, p.metodo, p.situacao, p.data_vencimento FROM servicos.pagamentos p JOIN servicos.servicos s ON s.id_servico= p.id_servico JOIN servicos.veiculos v ON v.placa_veiculo = s.placa_veiculo_id JOIN servicos.clientes c ON c.cpf = v.cpf_dono WHERE situacao='pendente'"
         const result = await this.pool.query(query);
 
         const listaPagamentos: RelatorioPAG[] = []

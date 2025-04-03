@@ -44,11 +44,10 @@ export class VeiculoView {
                 let addnome_veiculo = this.prompt("Digite o nome do veiculo: ")
                 let addkm_veiculo = this.prompt("Quantos quilometros o veiculo já rodou? (apenas números): ")
                 await this.veiculo.adiocionarVeiculo(addcpf_dono, addplaca_veiculo, addano_veiculo, addnome_veiculo, addkm_veiculo)
-                console.log("Veiculo adicionado com Sucesso!!!")
                 return this.exibirMenuVeiculo()
 
             case "4":
-                let pergunta_placa= this.prompt("Digite a plca do veículo que deseja atualizar os dados: ")
+                let pergunta_placa= this.prompt("Digite a placa do veículo que deseja atualizar os dados: ")
                 let cpf_novo= this.prompt("Digite o CPF do novo dono do veiculo (formato xxx.xxx.xxx-xx):")
                 let ano_new= this.prompt("Digite o ano do veiculo: ")
                 let nome_new= this.prompt("Digite o nome do veiculo: ")

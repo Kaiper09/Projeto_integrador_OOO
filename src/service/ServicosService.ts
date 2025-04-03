@@ -27,7 +27,16 @@ export class ServicosService {
         const placa =  await this.listarServicos()
         const placa_existente = placa.find(placa => placa.getplaca() === placa_veiculo_id)
         if(!placa_existente){
-            console.log("Placa não encontrada na tabela de veículos")
+            throw new Error ("Placa não encontrada na tabela de veículos")
+        }
+
+        const hoje = new Date();
+        if (data > hoje) {
+        throw new Error ("A data do serviço não pode ser no futuro");
+        }
+
+        if(valor_servico < 0){
+           throw new Error ("O serviço não pode ter uma valor negativo")
         }
         
         await this.repo.adicionarServicos(id_servico, servicos_feito, data, placa_veiculo_id, valor_servico)
@@ -49,18 +58,15 @@ export class ServicosService {
         const servicosexistente = servicoss.find(servicos => servicos.getIdservico() === id_servico)
 
         if (!servicosexistente) {
-            console.log("Servicos não encontrado")
-            return;
+            throw new Error ("Servicos não encontrado")   
         }
 
         if (!servicos_feito || servicos_feito.trim() === "") {
-           console.log("Descrição do servicos feito não pode ser vazia");
-           return
+            throw new Error ("Descrição do servicos feito não pode ser vazia");
         }
 
         if (!Number.isInteger(id_servico) || id_servico <= 0) {
-            console.log("ID do serviço deve ser um número inteiro positivo");
-            return
+            throw new Error ("ID do serviço deve ser um número inteiro positivo"); 
         }
 
         await this.repo.atualizarServicos(id_servico, servicos_feito, data, placa_veiculo_id, valor_servico)
@@ -73,8 +79,8 @@ export class ServicosService {
         const servicosexistente = servicos.find(servicos => servicos.getIdservico() ===id_servico)
 
         if(!servicosexistente){
-            console.log("ID serviço não encontrado");
-            return
+            throw new Error ("ID serviço não encontrado");
+             
         }
 
         await this.repo.deletarServicos(id_servico)

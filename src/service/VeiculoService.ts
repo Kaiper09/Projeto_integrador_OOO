@@ -33,7 +33,20 @@ export class VeiculoService {
 
         }
 
-        
+        if (!km_veiculo || isNaN(Number(km_veiculo)) || Number(km_veiculo) <= 0) {
+            throw new Error("O KM do veículo deve ser um número maior que 0");
+        }
+
+        const regexAno = /^\d{4}$/;  
+            if (!regexAno.test(ano)) {
+                throw new Error("O ano deve ser composto por 4 dígitos numéricos");
+        }
+
+        const anoAtual = new Date().getFullYear();
+        if (parseInt(ano) > anoAtual) {
+            throw new Error(`O ano não pode ser maior que o ano atual!`);
+        }
+
         const anoValido = /^[12]\d{3}$/;
         if (!anoValido.test(ano)) {
             throw new Error("Ano do veículo inválido");
@@ -58,7 +71,22 @@ export class VeiculoService {
     }
 
     async atualizarVeiculo(cpf_dono: string, placa_veiculo: string, ano: string, nome_veiculo: string, km_veiculo: string) {
-        
+
+        if (!km_veiculo || isNaN(Number(km_veiculo)) || Number(km_veiculo) <= 0) {
+            throw new Error("O KM do veículo deve ser um número maior que 0");
+        }
+
+        const regexAno = /^\d{4}$/;  
+            if (!regexAno.test(ano)) {
+                throw new Error("O ano deve ser composto por 4 dígitos numéricos");
+        }
+
+        const anoAtual = new Date().getFullYear();
+        if (parseInt(ano) > anoAtual) {
+            throw new Error(`O ano não pode ser maior que o ano atual!`);
+        }
+
+
         const anoValido = /^[12]\d{3}$/;
         if (!anoValido.test(ano)) {
            console.log("Ano do veículo inválido");

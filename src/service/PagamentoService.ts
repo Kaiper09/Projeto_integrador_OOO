@@ -30,8 +30,15 @@ export class PagamentosService{
         }
 
         const pagPermitidos = ['pix', 'cartao', 'dinheiro']
-        if (!pagPermitidos) {
+        if (!pagPermitidos.includes(metodo)) {
             console.log("Método de pagamento inválido")
+            console.log("Métodos permitidos: pix, dinheiro e cartao")
+            return
+        }
+
+        const situacaoPermitidas = ['pendente', 'paga']
+        if(!situacaoPermitidas.includes(situacao)){
+            console.log("Situação inválida! Apenas perndente ou paga")
             return
         }
 
@@ -58,8 +65,8 @@ export class PagamentosService{
         }
 
         const situPermitidas = ['pendente', 'paga']
-        if(!situPermitidas){
-            console.log("Situação inválida! Apenas perndente e paga")
+        if(!situPermitidas.includes(situacao)){
+            console.log("Situação inválida! Apenas perndente ou paga")
             return
         }
         await this.repo.atualizarPagamento(id_servico, data, metodo, situacao , new Date(data_vencimento))
