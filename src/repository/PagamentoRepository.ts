@@ -38,7 +38,7 @@ export class PagamentosRepository{
     }
 
     async adicionarPagamento(id_servico: number, data: Date, metodo: string, situacao:string ,data_vencimento: Date){
-        let query="INSERT INTO SERVICOS.PAGAMENTOS (id_servico, data, metodo, situacao, valor) VALUES ($1,$2, $3, $4)";
+        let query="INSERT INTO SERVICOS.PAGAMENTOS (id_servico, data, metodo, situacao, data_vencimento) VALUES ($1,$2, $3, $4, $5)";
         await this.pool.query(query,[id_servico, data, metodo, situacao, data_vencimento])
     } 
     

@@ -39,7 +39,7 @@ export class ServicoRepository {
     }
 
     async adicionarServicos(id_servico: number, trabalho_feito: string, data: Date, placa_veiculo_id: string, valor_servico: number ){
-        let query= "INSERT INTO SERVICOS.TRABALHOS (id_servico, trabalho_feito, data, placa_veiculo_id, valor_servico) VALUES ($1, $2, $3, $4)"
+        let query= "INSERT INTO SERVICOS.servicos (id_servico, trabalho_feito, data, placa_veiculo_id, valor_servico) VALUES ($1, $2, $3, $4, $5)"
         await this.pool.query(query,[id_servico, trabalho_feito, data, placa_veiculo_id, valor_servico])
     }
 

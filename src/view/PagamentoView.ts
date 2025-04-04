@@ -45,8 +45,8 @@ export class PagamentoView {
             case "3":
                 let addid = this.prompt("Digite o ID do novo pagamento: ")
                 let adddata = this.prompt("Digite a data do pagamento (yyyy-mm-dd): ")
-                let addmetodo = this.prompt("Digite o metodo: ")
-                let addsituacao= this.prompt("Informe a situaçao: ")
+                let addmetodo = this.prompt("Digite o metodo, apenas pix, cartao e dinheiro: ")
+                let addsituacao= this.prompt("Informe a situaçao (pago | pendente): ")
                 let addVencimento= this.prompt("Informe a data de vencimetno (yyyy-mm-dd): ")
                 await this.pagamento.adicionarPagamento(parseInt(addid), new Date(adddata), addmetodo, addsituacao, new Date (addVencimento))
                 console.log("Pagamento adicionado com sucesso!!!")
@@ -56,8 +56,8 @@ export class PagamentoView {
             case "4":
                 let perguntar_id = parseInt(this.prompt("Digite o id do serviço que deseja atualizar: "))
                 let newData = this.prompt("Digite a data do pagamento (yyyy-mm-dd): ")
-                let newMetodo = this.prompt("Digite o novo metodo: ")
-                let newSituacao= this.prompt("Digite a situação: ")
+                let newMetodo = this.prompt("Digite o novo metodo, apenas pix, cartao e dinheiro:: ")
+                let newSituacao= this.prompt("Digite a situação (pago | pendente): ")
                 let newVencimento= this.prompt("Informe a data de vencimetno (yyyy-mm-dd): ")
                 await this.pagamento.atualizarPagamento(Number(perguntar_id), new Date(newData), newMetodo, newSituacao, new Date(newVencimento))
                 return this.exibirMenuPagamento()
