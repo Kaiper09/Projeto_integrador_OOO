@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="veiculo.css" type="text/css" rel="stylesheet">
+    <title>Lista de veiculos</title>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <table id="veiculosTable">
+        <thead>
+            <tr >
+                <th>Cpf do Dono</th>
+                <th>Placa</th>
+                <th>Ano</th>
+                <th>Nome Veiculo</th>
+                <th>Quilometragem</th>
+            </tr>
+        </thead>
+        <tbody id="veiculosTableDados">
+        </tbody>
+    </table>
+
+    <!--modal-->
+    <div id="modal">
+        <label>CPF: <input type="text" id="cpf-dono"/>
+        </label>
+        <br>
+        <label>Placa: <input type="text" id="veiculo-placa">
+        </label>
+        <br>
+        <label>Ano: <input type="date"  id="veiculo-ano">
+        </label>
+        <br>
+        <label>Nome: <input type="text" id="veiculo-nome">
+        </label>
+        <br>
+        <label>Km: <input type="text" id="veiculo-km"></label>
+        <br>
+        <h3 id="msg"></h3> <!-- Titulo para aparecer na tela -->
+
+        <br>
+           
+            <button id="btn-salvar"><icon id="isalvar"></icon></button>
+            <button id="btn-limpar"><icon id="ilimpar"></icon></button>
+
+            
+    </div>
+
+
+    <script src="veiculo.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="cliente.css" type="text/css" rel="stylesheet">
+    <title>Lista de clientes</title>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <table id="clientesTable">
+        <thead>
+            <tr >
+              <th>Cpf</th>
+                <th>Nome</th>
+                <th>Nascimento</th>
+                <th>Numero</th>
+                <th>Cidade</th>
+                <th>Situação</th>
+            </tr>
+        </thead>
+        <tbody id="clientesTableDados">
+        </tbody>
+    </table>
+
+    <!--modal-->
+    <div id="modal">
+        <label>CPF: <input type="text" id="cliente-cpf"/>
+        </label>
+        <br>
+        <label>Nome: <input type="text" id="cliente-nome">
+        </label>
+        <br>
+        <label>Nascimento: <input type="date"  id="cliente-nascimento"  max="2007-07-7">
+        </label>
+        <br>
+        <label>Numero: <input type="text" id="cliente-numero">
+        </label>
+        <br>
+        <label>Cidade: <input type="text" id="cliente-cidade"></label>
+        <br>
+        <label for="situacao">Situação:</label>
+        <select id="situacao" name="situacao">
+            <option value="ativo">Ativo</option>
+            <option value="inativo">Inativo</option>
+        </select>
+
+        <h3 id="msg"></h3> <!-- Titulo para aparecer na tela -->
+
+        <br>
+           
+            <button id="btn-salvar"><icon id="isalvar"></icon></button>
+            <button id="btn-limpar"><icon id="ilimpar"></icon></button>
+
+            
+    </div>
+
+
+    <script src="cliente.js"></script>
+</body>
+
+</html>

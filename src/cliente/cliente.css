@@ -1,0 +1,197 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    padding: 20px;
+}
+
+/* Botão principal (limpar) */
+#btn-limpar {
+    background-color:#2757dc;
+    border: none;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition:  0.3s;
+}
+
+
+
+#btn-limpar:hover {
+    background-color: #d35400;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #2c2c2c;
+    margin-bottom: 20px;
+    border: 1px solid #444;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #444;
+    text-align: center;
+}
+
+th {
+    background-color: #3d3d3d;
+    color: #5c81e6;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #2e2e2e;
+}
+
+/* Modal */
+#modal {
+    background-color: #2b2b2b;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 500px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+#modal label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#modal input,
+#modal select {
+    width: 100%;
+    padding: 8px;
+    background-color: #1c1c1c;
+    border: 1px solid #555;
+    color: #fff;
+    border-radius: 4px;
+    margin-top: 4px;
+    font: bolder ;
+}
+
+#modal input:focus,
+#modal select:focus {
+    border-color:#2757dc;
+    outline: none;
+}
+
+/* Botões do modal */
+#btn-salvar,
+#btn-excluir {
+    padding: 10px 20px;
+    margin: 10px 5px 0 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#btn-salvar {
+    background-color: #27ae60;
+    color: #fff;
+}
+
+#btn-salvar:hover {
+    background-color: #229954;
+}
+
+#btn-excluir {
+    background-color: #c0392b;
+    color: #fff;
+}
+
+#btn-excluir:hover {
+    background-color: #a93226;
+}
+
+/* Ícones */
+icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Responsivo opcional */
+@media (max-width: 600px) {
+    table, #modal {
+        font-size: 14px;
+    }
+}
+
+/* Hover para células da tabela */
+table tr:hover {
+    background-color: #969393;
+    cursor: default;
+}
+
+/* Hover para campos de input e select */
+#modal input:hover,
+#modal select:hover {
+    border-color: #222fe6;
+    background-color: #252525;
+}
+
+/* Hover para botões */
+#btn-salvar:hover {
+    background-color: #2ecc71;
+    transform: scale(1.05);
+}
+
+#btn-excluir:hover {
+    background-color: #e74c3c;
+    transform: scale(1.05);
+}
+
+#btn-limpar:hover {
+    background-color: #222fe6;
+    transform: scale(1.05);
+}
+
+/* Adiciona transições suaves */
+button,
+input,
+select,
+table tr {
+    transition: all 0.3s ease;
+}
+
+/* Hover para ícones (usando lucide ou SVGs) */
+icon:hover {
+    filter: brightness(1.3);
+    transform: scale(1.2);
+}
+
+#modal input {
+    color: #f1f1f1; /* Cor clara para o texto */
+    background-color: #1a1a1a; /* Fundo escuro */
+    border: 1px solid #0f53f1;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+
+button {
+       background-color:#2757dc;
+    border: none;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition:  0.3s;
+}
+
+button:hover {
+    background-color:#222fe6;
+}

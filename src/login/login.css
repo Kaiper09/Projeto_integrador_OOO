@@ -1,0 +1,186 @@
+
+
+:root {
+    --cor-fundo: #1a1a1a;
+    --cor-texto-principal: #e0e0e0;
+    --cor-detalhe: #00bcd4;
+    --cor-campo-fundo: #2b2b2b;
+    --cor-borda-campo: #555555;
+    --cor-placeholder: #888888;
+    --cor-botao-fundo: #333333;
+    --cor-botao-hover: #4a4a4a;
+    --cor-sombra: rgba(0, 0, 0, 0.5);
+    --cor-msg-erro: #ff6b6b;
+}
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    background-image:
+        repeating-linear-gradient(
+            45deg,
+            var(--cor-botao-fundo) 0,
+            var(--cor-botao-fundo) 1px,
+            transparent 1px,
+            transparent 8px
+        );
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            var(--cor-botao-fundo) 0,
+            var(--cor-botao-fundo) 1px,
+            transparent 1px,
+            transparent 8px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            var(--cor-botao-fundo) 0,
+            var(--cor-botao-fundo) 1px,
+            transparent 1px,
+            transparent 8px
+        );
+    opacity: 0.1;
+    z-index: -1;
+}
+
+h2 {
+    font-size: 2.2em;
+    color: var(--cor-detalhe);
+    text-shadow: 0 0 8px var(--cor-detalhe);
+    margin-bottom: 30px;
+    text-align: center;
+    animation: glitch-text-h2 2s infinite alternate;
+}
+
+@keyframes glitch-text-h2 {
+    0% { transform: translate(0); opacity: 1; }
+    25% { transform: translate(-1px, 1px); opacity: 0.95; }
+    50% { transform: translate(1px, -1px); opacity: 1; }
+    75% { transform: translate(-1px, -1px); opacity: 0.95; }
+    100% { transform: translate(0); opacity: 1; }
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 300px;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    background-color: var(--cor-campo-fundo);
+    border: 2px solid var(--cor-borda-campo);
+    border-radius: 5px;
+    color: var(--cor-texto-principal);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1em;
+    outline: none;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: var(--cor-placeholder);
+    opacity: 0.7;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: var(--cor-detalhe);
+    box-shadow: 0 0 15px rgba(0, 188, 212, 0.4);
+}
+
+button {
+    background-color: var(--cor-botao-fundo);
+    color: var(--cor-texto-principal);
+    border: 2px solid var(--cor-detalhe);
+    padding: 15px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px var(--cor-sombra);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: var(--cor-botao-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px var(--cor-sombra);
+    color: var(--cor-detalhe);
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+#msg {
+    margin-top: 25px;
+    font-size: 1.1em;
+    color: var(--cor-msg-erro);
+    text-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    h2 {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+        padding: 0 15px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 80%;
+        max-width: 280px;
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+
+    button {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+
+    #msg {
+        font-size: 1em;
+        padding: 0 15px;
+        text-align: center;
+    }
+}
